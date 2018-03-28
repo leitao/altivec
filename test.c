@@ -21,13 +21,13 @@ void print_vec_long(char *s, vector signed long int _data){
 
 int main(){
     vector signed long int output;
-    signed char x;
+    signed char x, y;
     vector signed char _data;
     const vector signed char bits = {120, 112, 104, 96, 88, 80, 72, 64, 56, 48, 40, 32, 24, 16, 8, 0};
 
 
     // Initialize the vector _data with the same values
-    _data = vec_splat_s8(-0x1);
+    _data = vec_splat_s8(-1);
 
     print_vec_char("_data", _data);
     print_vec_char("bits", bits);
@@ -35,8 +35,10 @@ int main(){
     output = vec_vbpermq(_data, bits);
     print_vec_long("output", output);
 
+    y = vec_extract(output, 0);
     x = vec_extract(output, 1);
 
-    printf("Output = %x\n", x);
+    printf("First Half  = %x\n", y);
+    printf("Second Half = %x\n", x);
 
 }
